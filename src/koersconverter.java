@@ -2,6 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class koersconverter {
     public static void main(String[] args) {
         // System.out.println("Hello world");
@@ -22,17 +24,25 @@ public class koersconverter {
                 output = convertToDollar(currencyDollar);
                 saveData = getSaveConversionInput();
                //In progress
-                myDataConversion = saveData(saveData, output);
-                System.out.println("You current data is: " + myDataConversion.toString());
+                /*myDataConversion = saveData(saveData, output);
+                System.out.println("You current data is: " + myDataConversion.toString());*/
+                while(!userWantsMore){
+                    newTry = getTryAgainInput();
+                    userWantsMore = doTryAgain(newTry);
+                }
                 newTry = getTryAgainInput();
                 userWantsMore = doTryAgain(newTry);
 
             } else if (input.equals("dollar")) {
                 output = convertToEuro(currencyEuro);
-                saveData = getSaveConversionInput();
-                saveData(saveData, output);
+               /* saveData = getSaveConversionInput();
+                saveData(saveData, output);*/
                 newTry = getTryAgainInput();
                 userWantsMore = doTryAgain(newTry);
+                while(!userWantsMore){
+                    newTry = getTryAgainInput();
+                    userWantsMore = doTryAgain(newTry);
+                }
             } else {
                 System.out.println("Please, choose a valid answer");
             }
@@ -64,14 +74,15 @@ public class koersconverter {
         if (inputAnswerTryAgain.equals("y")) {
             userWantsMore = true;
         } else if (inputAnswerTryAgain.equals("n")) {
-            userWantsMore = false;
             System.out.println("See you next time!");
+            System.exit(0);;
         } else {
-            do {
-                System.out.println("Write a valid answer");
+            System.out.println("Write a valid answer");
+           /* do {
                 inputAnswerTryAgain = getTryAgainInput();
-            }while (!inputAnswerTryAgain.equals("y") & !inputAnswerTryAgain.equals("n"));
-            }
+            } while (!inputAnswerTryAgain.equals("y") & !inputAnswerTryAgain.equals("n"));*/
+            userWantsMore = false;
+        }
         return userWantsMore;
     }
 
