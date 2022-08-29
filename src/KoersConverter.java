@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class KoersConverter extends currency{
+public class KoersConverter extends Currency {
     double currencyDollar = getCURRENCY_DOLLAR();
     double currencyEuro = getCURRENCY_EURO();
     double output;
@@ -13,27 +13,27 @@ public class KoersConverter extends currency{
      public void convertCurrency(){
          do {
 
-            String input = getChoiceCurrencyInput();
+            String input = HandleUserInput.getChoiceCurrencyInput();
 
             if (input.equals("euro")) {
-                output = convertToDollar(currencyDollar);
+                output = DoCurrencyMath.convertToDollar(currencyDollar);
 
-                userWantsToSaveData = saveData();
+                userWantsToSaveData = HandleUserInput.saveData();
                 if(userWantsToSaveData) {
                     data.add(output);
                 }
                 System.out.println("You current data is: " + data);
-                userWantsMore = doTryAgain();
+                userWantsMore = HandleUserInput.doTryAgain();
 
             } else if (input.equals("dollar")) {
-                output = convertToEuro(currencyEuro);
+                output = DoCurrencyMath.convertToEuro(currencyEuro);
 
-                userWantsToSaveData = saveData();
+                userWantsToSaveData = HandleUserInput.saveData();
                 if(userWantsToSaveData) {
                     data.add(output);
                 }
                 System.out.println("You current data is: " + data);
-                userWantsMore = doTryAgain();
+                userWantsMore = HandleUserInput.doTryAgain();
 
             } else {
                 System.out.println("Please, choose a valid answer");
@@ -42,7 +42,7 @@ public class KoersConverter extends currency{
         } while (userWantsMore);
     }
 
-    public static String getChoiceCurrencyInput() {
+   /* public static String getChoiceCurrencyInput() {
         Scanner choiceCurrency = new Scanner(System.in);
         System.out.println("Choose input: Euro or Dollar?");
         return choiceCurrency.nextLine().toLowerCase();
@@ -88,9 +88,9 @@ public class KoersConverter extends currency{
                 System.out.println("Write a valid answer");
             }
         }
-    }
+    }*/
 
-    public static double doMath(double rate, double amount){
+    /*public static double doMath(double rate, double amount){
         double output = rate * amount;
         return output;
     }
@@ -111,5 +111,5 @@ public class KoersConverter extends currency{
         double output = doMath(toEuro, dollar);
         System.out.println(dollar + " is " + output + " in euro");
         return output;
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-public class currency {
+public class Currency {
     private final double CURRENCY_DOLLAR = 0.902981;
     private final double CURRENCY_EURO = 1.003597;
 
