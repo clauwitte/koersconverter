@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -18,6 +19,11 @@ public class koersconverter {
         String saveData;
         ArrayList <Double> data = new ArrayList<>();
 
+        ArrayList<String> cars = new ArrayList<>();
+        cars.add("audi");
+        cars.add("bwm");
+
+
         do {
 
             String input = getChoiceCurrencyInput();
@@ -25,17 +31,13 @@ public class koersconverter {
             if (input.equals("euro")) {
                 output = convertToDollar(currencyDollar);
 
-                saveData = getSaveConversionInput();
-                userWantsToSaveData = saveData(saveData);
+
+                userWantsToSaveData = saveData();
                 if(userWantsToSaveData) {
                     data.add(output);
                 }
                 System.out.println("You current data is: " + data);
 
-                while(!userWantsToSaveData){
-                    saveData = getSaveConversionInput();
-                    userWantsToSaveData = saveData(saveData);
-                }
 
                 newTry = getTryAgainInput();
                 userWantsMore = doTryAgain(newTry);
@@ -43,25 +45,15 @@ public class koersconverter {
                     newTry = getTryAgainInput();
                     userWantsMore = doTryAgain(newTry);
                 }
-
-
-
-
-
             } else if (input.equals("dollar")) {
                 output = convertToEuro(currencyEuro);
 
-                saveData = getSaveConversionInput();
-                userWantsToSaveData = saveData(saveData);
+                userWantsToSaveData = saveData();
                 if(userWantsToSaveData) {
                     data.add(output);
                 }
                 System.out.println("You current data is: " + data);
 
-                while(!userWantsToSaveData){
-                    saveData = getSaveConversionInput();
-                    userWantsToSaveData = saveData(saveData);
-                }
 
                 newTry = getTryAgainInput();
                 userWantsMore = doTryAgain(newTry);
@@ -109,34 +101,22 @@ public class koersconverter {
         return userWantsMore;
     }
 
-    /*public static List <Double> saveData (String inputSaveConversionAnswer, double output){
-        List<Double>saveData = new ArrayList<>();
-        if(inputSaveConversionAnswer.equals("y")){
-            saveData.add(output);
-        } else if (inputSaveConversionAnswer.equals("n")){
-            System.out.println("No problemo");
-        } else {
-            do {
+    public static boolean saveData (){
+       // boolean userWantsToSaveData = false;
+        String inputSaveConversionAnswer;
+        while(true){
+            inputSaveConversionAnswer = getSaveConversionInput();
+            if (inputSaveConversionAnswer.equals("y")) {
+                return true;
+            } else if (inputSaveConversionAnswer.equals("n")) {
+                System.out.println("No problemo");
+                return false;
+            } else {
                 System.out.println("Write a valid answer");
-                inputSaveConversionAnswer = getSaveConversionInput();
-            }while (!inputSaveConversionAnswer.equals("y") & !inputSaveConversionAnswer.equals("n"));
+            }
         }
-        return saveData;
 
-    }*/
-
-    public static boolean saveData (String inputSaveConversionAnswer){
-        boolean userWantsToSaveData = false;
-
-        if (inputSaveConversionAnswer.equals("y")) {
-            userWantsToSaveData = true;
-        } else if (inputSaveConversionAnswer.equals("n")) {
-            System.out.println("No problemo");
-        } else {
-            System.out.println("Write a valid answer");
-            userWantsToSaveData = false;
-        }
-        return userWantsToSaveData;
+        //return userWantsToSaveData;
     }
 
     public static double doMath(double rate, double amount){
