@@ -26,12 +26,13 @@ public class koersconverter {
                //In progress
                 /*myDataConversion = saveData(saveData, output);
                 System.out.println("You current data is: " + myDataConversion.toString());*/
+                newTry = getTryAgainInput();
+                userWantsMore = doTryAgain(newTry);
                 while(!userWantsMore){
                     newTry = getTryAgainInput();
                     userWantsMore = doTryAgain(newTry);
                 }
-                newTry = getTryAgainInput();
-                userWantsMore = doTryAgain(newTry);
+
 
             } else if (input.equals("dollar")) {
                 output = convertToEuro(currencyEuro);
